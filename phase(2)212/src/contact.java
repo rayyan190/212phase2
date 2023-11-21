@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 
 public class contact implements Comparable {
 	private String name;
@@ -6,6 +7,7 @@ public class contact implements Comparable {
 	private String Birthday;
 	private String notes;
 	private String addres;
+	private event LinkedList ;
 	
 	
 	
@@ -17,6 +19,7 @@ public class contact implements Comparable {
 		Birthday = birthday;
 		this.notes = notes;
 		this.addres = addres;
+		
 	}
 	public contact(contact c ) {
 		this.name = c.name;

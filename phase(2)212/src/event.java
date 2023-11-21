@@ -5,7 +5,7 @@ public class event {
 	 private String ContactName;
 	 private String dateTime;
 	 private String location;
-	 private boolean type;    //if event = true, appointment=false
+	 private String type;    
 
 	 
 	 public event(String eventTitle, String ContactName, String dateTime, String location) {

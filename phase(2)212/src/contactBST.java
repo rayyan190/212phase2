@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class contactBST {
 	BSTNode root,current;
@@ -107,45 +108,52 @@ public class contactBST {
 		return p;
 	}
 	
-	// uniqe search
-	public boolean searchPhoneNumber(String phone ) {
+	// uniqe search  
+	public boolean CheckPhoneNumber(String phone ) {
 		if(root==null)
 			return false;
-		return searchPhoneNumber( root, phone);
+		return CheckPhoneNumber( root, phone);
 		
 	}
-	private boolean searchPhoneNumber(BSTNode p,String phone) {
+	private boolean CheckPhoneNumber(BSTNode p,String phone) {
 		if(p==null)
 			return false;
 		
-		boolean foundLeft=searchPhoneNumber(p.left, phone);
+		boolean foundLeft=CheckPhoneNumber(p.left, phone);
 		if(foundLeft)
 			return true;
 		
 		if(p.data.getPhoneNumber().equalsIgnoreCase(phone))
 			return true;
 		
-		return searchPhoneNumber(p.right, phone);
+		return CheckPhoneNumber(p.right, phone);
 	}
 	//// uniqe search
-	public boolean searchName(String name ) {
+	public boolean CheckName(String name ) {
 		if(root==null)
 			return false;
-		return searchName( root, name);
+		return CheckName( root, name);
 		
 	}
-	private boolean searchName(BSTNode p,String name) {
+	private boolean CheckName(BSTNode p,String name) {
 		if(p==null)
 			return false;
 		
-		boolean foundLeft=searchName(p.left, name);
+		boolean foundLeft=CheckName(p.left, name);
 		if(foundLeft)
 			return true;
 		
 		if(p.data.getName().equalsIgnoreCase(name))
 			return true;
 		
-		return searchName(p.right, name);
+		return CheckName(p.right, name);
+	}
+	
+	
+	public boolean isContactUnique(contact NewContact) {
+		if(CheckName(NewContact.getName())||CheckPhoneNumber(NewContact.getPhoneNumber()))
+			return false;
+		return true;
 	}
 	
 	public void inorderPrint() {
@@ -163,15 +171,15 @@ public class contactBST {
 	
 	
 	
-	public boolean searchEmail(String email) {
+	/*public boolean searchEmail1(String email) {
 		if(empty())
 			return false;
-		return searchEmail( root, email);
+		return searchEmail1( root, email);
 		
 	}
-	private boolean searchEmail(BSTNode p,String email) {
+	private boolean searchEmail1(BSTNode p,String email) {
 		
-		boolean foundLeft=searchEmail(p.left, email);
+		boolean foundLeft=searchEmail1(p.left, email);
 		if(foundLeft) {
 			p.data.PrintContact();
 			return true;}
@@ -180,8 +188,133 @@ public class contactBST {
 			p.data.PrintContact();
 			return true;}
 		
-		return searchName(p.right, email);
+		return searchEmail1(p.right, email);
 	}
+	*/
+	
+	public void searchName(String name) {
+		if(empty())
+			return ;
+		searchName(root, name);
+	}
+	private void searchName(BSTNode p,String name) {
+		if(p!=null) {
+			if(p.data.getName().equalsIgnoreCase(name)) {
+				System.out.println("Contact found!"); 
+				p.data.PrintContact();
+				return;
+			}
+			searchName(p.left,name);
+			searchName(p.right,name);
+		}
+	}
+	
+	
+	public void searchPhoneNumber(String phone) {
+		if(empty())
+			return ;
+		searchPhoneNumber(root, phone);
+	}
+	private void searchPhoneNumber(BSTNode p,String phone) {
+		if(p!=null) {
+			if(p.data.getPhoneNumber().equalsIgnoreCase(phone)) {
+				System.out.println("Contact found!"); 
+				p.data.PrintContact();
+				return;
+			}
+			searchPhoneNumber(p.left,phone);
+			searchPhoneNumber(p.right,phone);
+		}
+	}
+	
+	public void searchEmail(String email) {
+		if(empty())
+			return ;
+		searchEmail(root, email);
+	}
+	private void searchEmail(BSTNode p,String email) {
+		if(p!=null) {
+			if(p.data.geteMail().equalsIgnoreCase(email)) {
+				System.out.println("Contact found!"); 
+				p.data.PrintContact();
+				return;
+			}
+			searchEmail(p.left,email);
+			searchEmail(p.right,email);
+		}
+	}
+	
+	public void searchBirthday(String birthday) {
+		if(empty())
+			return ;
+		searchBirthday(root, birthday);
+	}
+	private void searchBirthday(BSTNode p,String birthday) {
+		if(p!=null) {
+			if(p.data.getBirthday().equalsIgnoreCase(birthday)) {
+				System.out.println("Contact found!"); 
+				p.data.PrintContact();
+				return;
+			}
+			searchBirthday(p.left,birthday);
+			searchBirthday(p.right,birthday);
+		}
+	}
+	
+	public void searchAddres(String addres) {
+		if(empty())
+			return ;
+		searchAddres(root, addres);
+	}
+	private void searchAddres(BSTNode p,String addres) {
+		if(p!=null) {
+			if(p.data.getAddres().equalsIgnoreCase(addres)) {
+				System.out.println("Contact found!");  
+				p.data.PrintContact();
+				return;
+			}
+			searchAddres(p.left,addres);
+			searchAddres(p.right,addres);
+		}
+	}
+	
+	
+	
+	
+	 
+	  public void searchContacts(int criteria){
+    	Scanner input = new Scanner(System.in);       // receive the way of searching then implement it
+    	if(criteria==1) {
+    		 System.out.print("Enter the contact's name:");
+    		 String name = input.nextLine();
+    		 searchName (name);
+    	}
+    	else if(criteria==2) {
+    		 System.out.print("Enter the contact's phone number:"); 
+    		 String phoneNumber = input.next();
+    		 searchPhoneNumber (phoneNumber);
+    	}
+    	else if(criteria==3) {
+    		 System.out.print("Enter the contact's email address:"); 
+    		 String emailAddress = input.next();
+    		 searchEmail (emailAddress );
+    	}
+    	else if(criteria==4) {
+    		 System.out.print("Enter the contact's address: "); 
+    		 String address = input.nextLine();
+    		 searchAddres (address );
+    	}
+    	else if(criteria==5) {
+    		 System.out.print("Enter the contact's birthday:"); 
+    		 String birthday = input.nextLine();
+    		 searchBirthday (birthday);
+    	}
+    }
+	  
+	  
+	 
+	 
+	 
 
 
 

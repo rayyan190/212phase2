@@ -1,13 +1,13 @@
-import java.util.LinkedList;
 
-public class contact implements Comparable {
+
+public class contact implements Comparable<contact>{
 	private String name;
 	private String PhoneNumber;
 	private String eMail;
 	private String Birthday;
 	private String notes;
 	private String addres;
-	private event LinkedList ;
+	private event eventLinkedList ;
 	
 	
 	
@@ -104,8 +104,8 @@ public class contact implements Comparable {
 
 
 
-	public  int compareTo(Object o) {
-		return this.getName().compareTo(o.name);
+	public  int compareTo(contact o) {
+		return getName().compareTo(o.name);
 	}
 	
 	

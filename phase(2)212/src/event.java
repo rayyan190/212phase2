@@ -6,6 +6,7 @@ public class event {
 	 private String dateTime;
 	 private String location;
 	 private String type;    
+	 private contactBST BST;
 
 	 
 	 public event(String eventTitle, String ContactName, String dateTime, String location) {

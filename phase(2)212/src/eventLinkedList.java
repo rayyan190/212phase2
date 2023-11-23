@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 
 
-public class eventLinkedList {
+public class eventLinkedList  {
 	
 	private Node head;
 	private Node current;
@@ -34,15 +34,28 @@ public class eventLinkedList {
 	}
 	
 	public void add (event e) {
-		Node  tmp;
+		Node  tmp=new Node(e);
 		if(empty())
 			current =head =new Node(e);  // if empty --> first element
 		
 		else {
-		 tmp =current.next;                 // else add it after current 
-		 current.next=new Node(e);
-		 current =current.next;
-		 current.next=tmp;}  
+			if(e.compareTo(head.data)<0) {
+		 tmp.next =head;                // else add it after current 
+		 head=tmp;
+		 return;         }
+			else {
+				Node t=head;
+				Node y=null;
+				while(t!=null && t.data.compareTo(e) <=0) {
+					y=t;
+					t=t.next;
+				}
+				y.next=tmp;
+				tmp.next=t;
+				
+			}
+			
+		}
 		
 		
 		

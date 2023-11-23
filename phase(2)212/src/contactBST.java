@@ -312,6 +312,23 @@ public class contactBST {
     }
 	  
 	  
+	  public void printByFirstName(String name) {
+		  if(empty()) {
+			  System.out.println("its empty");
+			  return;
+			  } 
+	  }
+	  public void printByFirstName(BSTNode p ,String name) {
+		  printByFirstName(p.left, name);
+		  String FullName=p.key;
+		  String FirstName=FullName.substring(0, FullName.indexOf(" "));
+		  if(FirstName.equalsIgnoreCase(name))
+			  p.data.PrintContact();
+		  printByFirstName( p.right , name);
+		  
+	  }
+	  
+	  
 	 
 	 
 	 

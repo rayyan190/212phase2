@@ -1,5 +1,5 @@
 
-public class event {
+public class event implements Comparable<event> {
 
 	 private String eventTitle;
 	 private String ContactName;
@@ -55,6 +55,10 @@ public class event {
 	 public void setLocation(String location) {
 	  this.location = location;
 	 }
+	 
+	 public  int compareTo(event e) {
+			return getEventTitle().compareTo(e.eventTitle);
+		}
 	
 	 
 	 public void PrintEvent() {

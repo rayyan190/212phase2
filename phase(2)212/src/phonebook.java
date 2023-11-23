@@ -12,6 +12,9 @@ public class phonebook {
 		if(!contactTree.isContactUnique(contact))
 			 System.out.println("Contact with the same name or phone number already exists.");
 		else {
+			contactTree.insert(contact.getName(), contact);
+				System.out.println("inserted succefully");
+			
 			
 		}
 	}
@@ -40,11 +43,18 @@ public class phonebook {
 	 }
 	 
 	 public void printContactsByFirstName(String firstName) {
+		 contactTree.printByFirstName(firstName);
+		 
+	 }
+    
+	 
+	 public void printAllEventsAlphabetically() {
+		 if(eventList.empty())
+			 System.out.println("event is empty");
+		 
+		 eventList.PrintEvents();
 		 
 	 }
 	 
-	 public void printAllEventsAlphabetically() {
-		 
-	 }
 
 }

@@ -7,11 +7,18 @@ public class contact implements Comparable<contact>{
 	private String Birthday;
 	private String notes;
 	private String addres;
-	private event eventLinkedList ;
+	private LinkedList<event> eventList ;
 	
 	
 	
 	
+	
+	public LinkedList<event> getEventList() {
+		return eventList;
+	}
+	public void setEventList(LinkedList<event> eventList) {
+		this.eventList = eventList;
+	}
 	public contact(String name, String phoneNumber, String eMail, String birthday, String notes, String addres) {
 		this.name = name;
 		PhoneNumber = phoneNumber;

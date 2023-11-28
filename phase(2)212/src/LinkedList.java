@@ -2,11 +2,11 @@ import java.util.Scanner;
 
 
 
-public class eventLinkedList  {
+public class LinkedList<T>  {
 	
-	private Node head;
-	private Node current;
-	public eventLinkedList() {
+	private Node <T>head;
+	private Node<T> current;
+	public LinkedList() {
 		head =current=null;
 	}
 	public boolean empty () {
@@ -25,28 +25,55 @@ public class eventLinkedList  {
 	public void findNext() {
 		current=current.next;
 	}
-	public event retrieve( ) {
+	public T retrieve( ) {
 		return current.data;
 
 	}
-	public void update(event e) {
+	public void update(T e) {
 		current.data = e;
 	}
 	
-	public void add (event e) {
+	public void addE (event e) {
 		Node  tmp=new Node(e);
 		if(empty())
 			current =head =new Node(e);  // if empty --> first element
 		
 		else {
-			if(e.compareTo(head.data)<0) {
+			if(e.compareTo((event) head.data)<0) {
 		 tmp.next =head;                // else add it after current 
 		 head=tmp;
 		 return;         }
 			else {
 				Node t=head;
 				Node y=null;
-				while(t!=null && t.data.compareTo(e) <=0) {
+				while(t!=null && ((event) t.data).compareTo(e) <=0) {
+					y=t;
+					t=t.next;
+				}
+				y.next=tmp;
+				tmp.next=t;
+				
+			}
+			
+		}
+		
+		
+		
+	}
+	public void addC (contact e) {
+		Node  tmp=new Node(e);
+		if(empty())
+			current =head =new Node(e);  // if empty --> first element
+		
+		else {
+			if(e.compareTo( (contact) head.data)<0) {
+		 tmp.next =head;                // else add it after current 
+		 head=tmp;
+		 return;         }
+			else {
+				Node t=head;
+				Node y=null;
+				while(t!=null && ( (contact) t.data).compareTo(e) <=0) {
 					y=t;
 					t=t.next;
 				}
@@ -83,22 +110,22 @@ public class eventLinkedList  {
 	 public void PrintEvents() {
 	   	 Node current = head;
 	   	 while (current != null) {
-	   		 current.getData().PrintEvent();
+	   		 ((event) current.getData()).PrintEvent();
 	   		 current=current.next;
 	   	 }
 
 			
 		}
 	 
-	 public eventLinkedList searchByContactName(String contactname){
+	 public LinkedList searchByContactName(String contactname){
 	    	boolean flag = false;
-	    	eventLinkedList L =new eventLinkedList();
+	    	LinkedList L =new LinkedList();
 			 Node current = head;
 			 while(current!=null) {
-				 if( current.getData().getContactName().equalsIgnoreCase(contactname)) {
-					 L.add(current.data);
+				 if( ((event) current.getData()).getContactName().equalsIgnoreCase(contactname)) {
+					 L.addE((event) current.data);
 					 System.out.println("Event found!"); 
-					  current.getData().PrintEvent();
+					  ((event) current.getData()).PrintEvent();
 					 flag = true;
 				 }
 				 current = current.next;
@@ -108,15 +135,15 @@ public class eventLinkedList  {
 			 return L;
 		 }
 	 
-	 public eventLinkedList searchByEventTitle(String Eventtittle){
+	 public LinkedList searchByEventTitle(String Eventtittle){
 	    	boolean flag = false;
-	    	eventLinkedList L =new eventLinkedList();
+	    	LinkedList L =new LinkedList();
 			 Node current = head;
 			 while(current!=null) {
-				 if(current.getData().getEventTitle().equalsIgnoreCase(Eventtittle)) {
-					 L.add(current.data);
+				 if(((event) current.getData()).getEventTitle().equalsIgnoreCase(Eventtittle)) {
+					 L.addE((event) current.data);
 					 System.out.println("Event found!"); 
-					current.getData().PrintEvent();
+					((event) current.getData()).PrintEvent();
 					 flag = true;
 				 }			 
 				 current = current.next;

@@ -208,6 +208,15 @@ public class contactBST {
 			searchName(p.right,name);
 		}
 	}
+	public contact findName(String name) {
+		if(empty())
+			return null ;
+		boolean found= findkey(name);
+		if(found)
+		return retrieve();
+		else return null;
+	}
+	
 	
 	
 	public void searchPhoneNumber(String phone) {
@@ -317,8 +326,9 @@ public class contactBST {
 			  System.out.println("its empty");
 			  return;
 			  } 
+		  printByFirstName(root, name);
 	  }
-	  public void printByFirstName(BSTNode p ,String name) {
+	  private void printByFirstName(BSTNode p ,String name) {
 		  printByFirstName(p.left, name);
 		  String FullName=p.key;
 		  String FirstName=FullName.substring(0, FullName.indexOf(" "));

@@ -104,6 +104,8 @@ public class PhoneBookMain {
 				 }
 				 else if(x==4) {
 					 
+					 
+					 
 					 System.out.print("Enter event title:");
 					 input.nextLine();
 					 String eventTitle = input.nextLine();
@@ -119,7 +121,7 @@ public class PhoneBookMain {
 					 input.nextLine();
 					 String location = input.nextLine();
 					 event NewEvent = new event(eventTitle,ContactName,date,time,location);
-					 p.scheduleEvent( NewEvent);
+					 p.scheduleEvent( NewEvent,ContactName);
 					 System.out.println();        
 				 }
 				 else if(x==5) {

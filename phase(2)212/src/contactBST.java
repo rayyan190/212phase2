@@ -326,9 +326,9 @@ public class contactBST {
 			  System.out.println("its empty");
 			  return;
 			  } 
-		  printByFirstName(root, name);
+		  SearchSameFirstName_rec(root, name);
 	  }
-	  private void printByFirstName(BSTNode p ,String name) {
+	 /* private void printByFirstName(BSTNode p ,String name) {
 		  printByFirstName(p.left, name);
 		  String FullName=p.key;
 		  String FirstName=FullName.substring(0, FullName.indexOf(" "));
@@ -336,12 +336,43 @@ public class contactBST {
 			  p.data.PrintContact();
 		  printByFirstName( p.right , name);
 		  
-	  }
+	  }*/
 	  
 	  
 	 
 	 
-	 
+	  private void SearchSameFirstName_rec (BSTNode  p, String name)
+	    {
+	        if (p == null)
+	            return ;
+	        
+	        else    if (p.data.compareFirstName(name) == 0)
+	           p.data.PrintContact();
+
+	        SearchSameFirstName_rec(p.left , name);
+	        SearchSameFirstName_rec(p.right, name);
+	    }
+	  
+	  
+	  public contact CheckNameObj(String name ) {
+			if(root==null)
+				return null;
+			return CheckNameObj( root, name);
+			
+		}
+		private contact CheckNameObj(BSTNode p,String name) {
+			if(p==null)
+				return null;
+			
+			boolean foundLeft=CheckName(p.left, name);
+			if(foundLeft)
+				return p.data;
+			
+			if(p.data.getName().equalsIgnoreCase(name))
+				return p.data;
+			
+			return CheckNameObj(p.right, name);
+		}
 
 
 

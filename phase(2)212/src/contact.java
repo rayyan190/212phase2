@@ -36,6 +36,8 @@ public class contact implements Comparable<contact>{
 		this.Birthday = c.Birthday;
 		this.notes = c.notes;
 	}
+	public contact(String name) {
+		this.name = name;}
 	
 
 
@@ -125,5 +127,20 @@ public class contact implements Comparable<contact>{
 		System.out.println("Notes: "+notes); 
 		
 	}
+	
+	
+	public int compareFirstName(String n) {
+        
+            String [] new_name = this.name.split(" ");
+            return (new_name[0].trim().compareToIgnoreCase(n) ) ;
+        
+        
+	}
+	
+	
+	
+	
+	
+	
 
 }

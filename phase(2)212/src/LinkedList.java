@@ -183,6 +183,21 @@ public class LinkedList<T>  {
 			 return L;
 		 }
 	 
+	 public void addString (T e) {
+	        Node <T> tmp;
+	        if(empty())
+	            current =head =new Node<T>(e);  // if empty --> first element
+
+	        else {
+	         tmp =current.next;                 // else add it after current 
+	         current.next=new Node<T>(e);
+	         current =current.next;
+	         current.next=tmp;}
+
+
+
+	    }
+	 
 	
 	
 	

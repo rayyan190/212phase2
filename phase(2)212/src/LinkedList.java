@@ -166,6 +166,24 @@ public class LinkedList<T>  {
 			 searchByEventTitle(EventTitle);
 		 }
 	 }
+	 
+	 public LinkedList<contact> searchByTitle(String Eventtittle){
+	    	
+	    	LinkedList<contact> L =new LinkedList();
+			 Node current = head;
+			 while(current!=null) {
+				 if(((event) current.getData()).getEventTitle().equalsIgnoreCase(Eventtittle)) {
+					 L = ((event) current.getData()).getContactEvent();
+					 
+				 }			 
+				 current = current.next;
+			 }
+			
+				
+			 return L;
+		 }
+	 
+	
 	
 	
 

@@ -13,7 +13,7 @@ public class event implements Comparable<event> {
 	 private Time st,en;
 	 public boolean isEvent=true;
 	 
-	 public LinkedList<contact> contactEvent= new LinkedList<contact>();
+	 public LinkedList<contact> contactEvent;
 
 	 
 	 
@@ -25,6 +25,7 @@ public class event implements Comparable<event> {
 		this.date = date;
 		Time = time;
 		this.location = location;
+		contactEvent= new LinkedList<contact>();
 	}
 	public String toString() {
 		return "event [eventTitle=" + eventTitle + ", ContactName=" + ContactName + ", date=" + date + ", Time=" + Time

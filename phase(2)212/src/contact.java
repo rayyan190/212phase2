@@ -7,7 +7,7 @@ public class contact implements Comparable<contact>{
 	private String Birthday;
 	private String notes;
 	private String addres;
-	private LinkedList<event> eventList ;
+	public LinkedList<event> eventList ;
 	
 	
 	
@@ -26,6 +26,8 @@ public class contact implements Comparable<contact>{
 		Birthday = birthday;
 		this.notes = notes;
 		this.addres = addres;
+		  eventList =new LinkedList<>();
+
 		
 	}
 	public contact(contact c ) {

@@ -20,20 +20,19 @@ public class phonebook {
 	}
 	
 	private boolean isConflict(contact c,event e) {
-		LinkedList<event> events=c.getEventList();
-		if(events.empty())
+		if(c.eventList.empty())
 			return false;
-		events.findFirst();
-		while(!events.last()) {
-			if(e.getDate().equalsIgnoreCase(events.retrieve().getDate())&& e.getTime().equalsIgnoreCase(events.retrieve().getTime())) {
-				System.out.println("there is conflict");
+		
+		c.eventList.findFirst();
+		while(!c.eventList.last()) {
+			if(e.getDate().equalsIgnoreCase(c.eventList.retrieve().getDate())&& e.getTime().equalsIgnoreCase(c.eventList.retrieve().getTime())) {
+				System.out.println("there is conflict 1");
 				return true;
 			}
-			events.findNext();
+			c.eventList.findNext();
 		}
-		if(e.getDate().equalsIgnoreCase(events.retrieve().getDate())&& e.getTime().equalsIgnoreCase(events.retrieve().getTime())) {
-			System.out.println("there is conflict");
-
+		if(e.getDate().equalsIgnoreCase(c.eventList.retrieve().getDate())&& e.getTime().equalsIgnoreCase(c.eventList.retrieve().getTime())) {
+			System.out.println("there is conflict 2");
 			return true;}
 		else return false;
 
@@ -46,10 +45,10 @@ public class phonebook {
 			l.addString(names[i]);
 		}
 		for(int i= 0;i<names.length;i++) {
-			if(!contactTree.CheckName(names[i]))
-				flag=false;
+			if(contactTree.CheckName(names[i]))
+				flag=true;
 			
-			else flag =true;
+			else flag =false;
 		}
 		if(flag==false) {
 			System.out.println("can t' schedule becuase one or more  contacts not found");
@@ -57,7 +56,7 @@ public class phonebook {
 		else {
 			contact currentC;
 			if(names.length==1 ) {
-				 currentC=contactTree.CheckNameObj(contactName);
+				 currentC=contactTree.CheckNameObj(names[0]);
 			boolean conflict= isConflict(currentC, e);  
 			if(conflict)
 			return;
@@ -71,12 +70,11 @@ public class phonebook {
 
 			}
 			
-			else if(names.length>1) {
+			else  {
 				boolean flags=false; 
 				for(int i= 0;i<names.length;i++) {
-				currentC=contactTree.CheckNameObj(contactName);
-				boolean conflict =isConflict(currentC, e);
-				if(conflict)
+				currentC=contactTree.CheckNameObj(names[i]);
+				if(isConflict(currentC, e))
 					return;
 				else {
 					flags=true;
@@ -104,9 +102,10 @@ public class phonebook {
 			System.out.println("Tree is empty."); 
 			return;
 		}
+		else {
 		LinkedList<event> list = new LinkedList<>();
 		if(!contactTree.findkey(contactName)) {
-			System.out.println("Contact dose not exist."); 
+			System.out.println("Contact does not exist."); 
 			return;
 		}
 		list = contactTree.retrieve().getEventList();
@@ -115,7 +114,7 @@ public class phonebook {
 			System.out.println("Contact removed succefully.");  
 		else
 			System.out.println("Contact removing failed."); 
-			
+		}
 		
 		
 	}

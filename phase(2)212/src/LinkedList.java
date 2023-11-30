@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class LinkedList<T>  {
 	
-	private Node <T>head;
+	public Node <T>head;
 	private Node<T> current;
 	public LinkedList() {
 		head =current=null;

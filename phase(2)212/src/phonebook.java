@@ -5,7 +5,7 @@ public class phonebook {
 	private contactBST contactTree;
 	
 	public phonebook() {
-		eventList = new LinkedList<>();
+		eventList = new LinkedList();
 		contactTree = new contactBST();
 	}
 	public void addContact(contact contact) {
@@ -55,7 +55,7 @@ public class phonebook {
                  return;}
 		else {
 			contact currentC;
-			if(names.length==1 ) {
+			if(names.length==1 ) {  // appointment 
 				 currentC=contactTree.CheckNameObj(names[0]);
 			boolean conflict= isConflict(currentC, e);  
 			if(conflict)
@@ -72,7 +72,7 @@ public class phonebook {
 			
 			else  {
 				boolean flags=false; 
-				for(int i= 0;i<names.length;i++) {
+				for(int i= 0;i<names.length;i++) { //cheking conflect
 				currentC=contactTree.CheckNameObj(names[i]);
 				if(isConflict(currentC, e))
 				{  flags=false;
@@ -83,11 +83,12 @@ public class phonebook {
 
 				
 				
-				for(int i= 0;i<names.length;i++) {
+				for(int i= 0;i<names.length;i++) { // scheduling
 					currentC=contactTree.CheckNameObj(names[i]);
-					eventList.addE(e);
 					currentC.getEventList().addE(e);
 					e.contactEvent.addC(currentC);}
+				eventList.addE(e);
+
 					
 				
 				}

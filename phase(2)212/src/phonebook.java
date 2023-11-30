@@ -20,30 +20,30 @@ public class phonebook {
 	}
 	
 	private boolean isConflict(contact c,event e) {
-		if(c.eventList.empty())
-			return false;
+		if(c.eventList.empty()) {
+			
+                    return false;}
+		else {
 		
 		c.eventList.findFirst();
 		while(!c.eventList.last()) {
 			if(e.getDate().equalsIgnoreCase(c.eventList.retrieve().getDate())&& e.getTime().equalsIgnoreCase(c.eventList.retrieve().getTime())) {
-				System.out.println("there is conflict 1");
+				System.out.println("there is conflict ");
 				return true;
 			}
 			c.eventList.findNext();
 		}
 		if(e.getDate().equalsIgnoreCase(c.eventList.retrieve().getDate())&& e.getTime().equalsIgnoreCase(c.eventList.retrieve().getTime())) {
-			System.out.println("there is conflict 2");
+			System.out.println("there is conflict ");
 			return true;}
+		
 		else return false;
 
-	}
+	}}
 	public void scheduleEvent(event e, String contactName) {
 		boolean flag =false; ;
-		LinkedList<String> l=new LinkedList<>();
 		String [] names= contactName.split(",");
-		for(int i= 0;i<names.length;i++) {
-			l.addString(names[i]);
-		}
+		
 		for(int i= 0;i<names.length;i++) {
 			if(contactTree.CheckName(names[i]))
 				flag=true;
@@ -75,18 +75,23 @@ public class phonebook {
 				for(int i= 0;i<names.length;i++) {
 				currentC=contactTree.CheckNameObj(names[i]);
 				if(isConflict(currentC, e))
-					return;
-				else {
-					flags=true;
+				{  flags=false;
+					return;}
+				else flags=true;}
+				if(flags)
+					System.out.println(" event will be sechedule  successfuly");
+
+				
+				
+				for(int i= 0;i<names.length;i++) {
+					currentC=contactTree.CheckNameObj(names[i]);
 					eventList.addE(e);
 					currentC.getEventList().addE(e);
-					e.contactEvent.addC(currentC);
+					e.contactEvent.addC(currentC);}
 					
+				
 				}
-				}
-				if(flags)
-					System.out.println(" event scheduled successfuly");
-
+				
 			}
 			
 			
@@ -95,7 +100,7 @@ public class phonebook {
 		
 		
 		
-	}
+	
 	
 	public void removeContact(String contactName ) {
 		if(contactTree.empty()) {

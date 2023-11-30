@@ -5,7 +5,7 @@ public class phonebook {
 	private contactBST contactTree;
 	
 	public phonebook() {
-		eventList = new LinkedList();
+		eventList = new LinkedList<>();
 		contactTree = new contactBST();
 	}
 	public void addContact(contact contact) {
@@ -110,7 +110,7 @@ public class phonebook {
 		}
 		list = contactTree.retrieve().getEventList();
 		removeEventwithContact(contactName,list);
-		if(contactTree.remove_key(contactName)) 
+		if(contactTree.removeKey(contactName)) 
 			System.out.println("Contact removed succefully.");  
 		else
 			System.out.println("Contact removing failed."); 

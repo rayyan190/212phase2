@@ -1,7 +1,7 @@
 
 public class Node<T> {
 	public T data;
-    public Node next;
+    public Node<T> next;
     public Node() {
         data =null;
         next=null;
@@ -13,13 +13,13 @@ public class Node<T> {
     public void setData(T data) {
         this.data = data;
     }
-    public void setNext(Node next) {
+    public void setNext(Node<T> next) {
         this.next = next;
     }
     public T getData() {
         return data;
     }
-    public Node getNext() {
+    public Node<T> getNext() {
         return next;
     }
 	

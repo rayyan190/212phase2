@@ -27,23 +27,15 @@ public class event implements Comparable<event> {
 		this.location = location;
 		contactEvent= new LinkedList<contact>();
 	}
-	public String toString() {
-		return "event [eventTitle=" + eventTitle + ", ContactName=" + ContactName + ", date=" + date + ", Time=" + Time
-				+ ", location=" + location + "]";
-	}
-	public event(event e) {
-		  this.eventTitle = e.eventTitle;
-		  this.ContactName = e.ContactName;
-		  this.date = e.date;
-		  this.location = e.location;
-		 
-	 }
+	
 	 public event() {
 		 eventTitle="";
 		 ContactName="";
 		 date="";
 		 location="";
-		 
+		 this.isEvent = true;  
+		 Time="";
+		 this.contactEvent = new LinkedList<contact> ();  
 	 }
 	 
 	 
@@ -130,11 +122,21 @@ public class event implements Comparable<event> {
 	
 	 
 	 public void PrintEvent() {
-		 System.out.println("Event title: "+eventTitle); 
-	     System.out.println("Contact Name: "+ContactName); 
-	     System.out.println("Date : "+date); 
-		 System.out.println("Location: "+location );
-		 System.out.println("Time: "+Time ); 
+		 if(isEvent==true) {
+			 System.out.println("Event title: "+eventTitle); 
+		     System.out.println("Contact Name: "+ContactName); 
+		     System.out.println("Date : "+date); 
+			 System.out.println("Location: "+location );
+			 System.out.println("Time: "+Time ); 
+		 }
+		 else {
+			 System.out.println("Appointment title: "+eventTitle); 
+		     System.out.println("Contact Name: "+ContactName); 
+		     System.out.println("Date : "+date); 
+			 System.out.println("Location: "+location );
+			 System.out.println("Time: "+Time ); 
+		 }
+		
 
 	 }
 	

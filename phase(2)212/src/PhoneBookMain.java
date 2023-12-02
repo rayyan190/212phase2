@@ -87,6 +87,7 @@ public class PhoneBookMain {
 						  break;
 						  }
 					  }catch(InputMismatchException e) {
+						  System.out.println();  
 						  input.nextLine();
 						  
 					  }
@@ -103,26 +104,55 @@ public class PhoneBookMain {
 					 System.out.println();    
 				 }
 				 else if(x==4) {
-					 
-					 
-					 
-					 System.out.print("Enter event title:");
-					 input.nextLine();
-					 String eventTitle = input.nextLine();
-					 System.out.print("Enter contact name:"); 
-					 String ContactName =input.nextLine();
-					 input.nextLine();
-					 System.out.print("Enter event date and time (YYYY/MM/DD/):");  
-					 String date =  input.next();
-					 System.out.print("Enter event date and time (HH:MM):");  
-					 String time =  input.next();
-					 
-					 System.out.print("Enter event location:");  
-					 input.nextLine();
-					 String location = input.nextLine();
-					 event NewEvent = new event(eventTitle,ContactName,date,time,location);
-					 p.scheduleEvent( NewEvent,ContactName);
-					 System.out.println();        
+					 System.out.println("Enter type:");  
+				        System.out.println("1. event");  
+				        System.out.println("2. appointment");  
+				        System.out.println("\nEnter your choice: ");  
+				        int choice = input.nextInt();  
+				        
+					 if(choice==1) {
+						 
+						 System.out.print("Enter event title:");
+						 input.nextLine();
+						 String eventTitle = input.nextLine();
+						 System.out.print("Enter contacts name separated by a comma:"); 
+						 String ContactName =input.nextLine();
+						 input.nextLine();
+						
+						 System.out.print("Enter event date (YYYY/MM/DD):");  
+						 String date =  input.next();
+						 System.out.print("Enter event time (HH:MM):");  
+						 String time =  input.next();
+						 System.out.print("Enter event location:");  
+						 input.nextLine();
+						 String location = input.nextLine();
+						 event NewEvent = new event(eventTitle,ContactName,date,time,location);
+						 NewEvent.isEvent=true;
+						 p.scheduleEvent( NewEvent,ContactName);
+						 System.out.println();
+					 }
+					 else {
+						
+						 System.out.print("Enter appointment title:");
+						 input.nextLine();
+						 String eventTitle = input.nextLine();
+						 System.out.print("Enter contact name:"); 
+						 String ContactName =input.nextLine();
+						 input.nextLine();
+						 System.out.print("Enter appointment date (YYYY/MM/DD):");  
+						 String date =  input.next();
+						 System.out.print("Enter appointment time (HH:MM):");  
+						 String time =  input.next();
+						 
+						 System.out.print("Enter appointment location:");  
+						 input.nextLine();
+						 String location = input.nextLine();
+						 event NewEvent = new event(eventTitle,ContactName,date,time,location);
+						 NewEvent.isEvent=false;
+						 p.scheduleEvent( NewEvent,ContactName);
+						 System.out.println();
+					 }
+					    
 				 }
 				 else if(x==5) {
 					 while (true) {
@@ -142,6 +172,7 @@ public class PhoneBookMain {
 					    break;
 					}
 					}catch(InputMismatchException e) {
+						 System.out.println();  
 						input.nextLine();
 					}
 					}
@@ -154,11 +185,11 @@ public class PhoneBookMain {
 				 else if(x==6) {
 					 System.out.println("Enter the firstname:");
 					 String firstName =  input.next();
-			
 					 input.nextLine();
+					 System.out.println();
 					 p.printContactsByFirstName(firstName);
 					 System.out.println();    
-					 //input.nextLine();
+					 
 
 
 				 }

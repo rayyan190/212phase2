@@ -30,14 +30,7 @@ public class contact implements Comparable<contact>{
 
 		
 	}
-	public contact(contact c ) {
-		this.name = c.name;
-		this.PhoneNumber = c.PhoneNumber;
-		this.eMail = c.eMail;
-		this.addres = c.addres;
-		this.Birthday = c.Birthday;
-		this.notes = c.notes;
-	}
+	
 	public contact(String name) {
 		this.name = name;}
 	
@@ -131,10 +124,10 @@ public class contact implements Comparable<contact>{
 	}
 	
 	
-	public int compareFirstName(String n) {
+	public int compareFirstName(String firstName) {
         
-            String [] new_name = this.name.split(" ");
-            return (new_name[0].trim().compareToIgnoreCase(n) ) ;
+            String [] FirstName = this.name.split(" ");
+            return (FirstName[0].trim().compareToIgnoreCase(firstName) ) ;
         
         
 	}

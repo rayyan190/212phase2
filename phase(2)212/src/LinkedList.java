@@ -71,8 +71,8 @@ public class LinkedList<T>  {
 		 head=tmp;
 		 return;         }
 			else {
-				Node t=head;
-				Node y=null;
+				Node<T> t=head;
+				Node<T> y=null;
 				while(t!=null && ( (contact) t.data).compareTo(e) <=0) {
 					y=t;
 					t=t.next;
@@ -93,7 +93,7 @@ public class LinkedList<T>  {
 			head = head.next;
 		}
 		else {
-			Node tmp = head;
+			Node<T> tmp = head;
 
 			while (tmp.next != current)
 				tmp = tmp.next;
@@ -108,23 +108,25 @@ public class LinkedList<T>  {
 	}
 	
 	 public void PrintEvents() {
-	   	 Node current = head;
+	   	 Node<T> current = head;
 	   	 while (current != null) {
 	   		 ((event) current.getData()).PrintEvent();
+	   		System.out.println();
 	   		 current=current.next;
 	   	 }
 
 			
 		}
 	 
-	 public LinkedList searchByContactName(String contactname){
+	 public void searchByContactName(String contactname){
 	    	boolean flag = false;
-	    	LinkedList L =new LinkedList();
-			 Node current = head;
+	    	
+			 Node<T> current = head;
 			 while(current!=null) {
 				 if( ((event) current.getData()).getContactName().equalsIgnoreCase(contactname)) {
-					 L.addE((event) current.data);
+					
 					 System.out.println("Event found!"); 
+					 System.out.println(); 
 					  ((event) current.getData()).PrintEvent();
 					 flag = true;
 				 }
@@ -132,17 +134,17 @@ public class LinkedList<T>  {
 			 }
 			 if(flag==false)
 				 System.out.println("Event Not found!"); 
-			 return L;
+			 
 		 }
 	 
-	 public LinkedList searchByEventTitle(String Eventtittle){
+	 public void searchByEventTitle(String Eventtittle){
 	    	boolean flag = false;
-	    	LinkedList L =new LinkedList();
-			 Node current = head;
+	    	
+			 Node<T> current = head;
 			 while(current!=null) {
 				 if(((event) current.getData()).getEventTitle().equalsIgnoreCase(Eventtittle)) {
-					 L.addE((event) current.data);
 					 System.out.println("Event found!"); 
+					 System.out.println(); 
 					((event) current.getData()).PrintEvent();
 					 flag = true;
 				 }			 
@@ -150,27 +152,29 @@ public class LinkedList<T>  {
 			 }
 			 if(flag==false)
 				 System.out.println("Event Not found!");
-			 return L;
+			
 		 }
 	 
 	 public void searchEvent(int criteria) {           // receive the way of searching then implement it
 		 Scanner input = new Scanner(System.in);
 		 if(criteria==1) {
+			 System.out.println();
 			 System.out.println("Enter the contact's Name:");  
 			 String contactName = input.nextLine();
 			 searchByContactName(contactName);
 		 }
 		 else if(criteria==2) {
+			 System.out.println();
 			 System.out.println("Enter the event title:");  
 			 String EventTitle = input.nextLine();
 			 searchByEventTitle(EventTitle);
 		 }
 	 }
 	 
-	 public LinkedList<contact> searchByTitle(String Eventtittle){
+	 public LinkedList<contact> searchByTitle(String Eventtittle){////////??????????
 	    	
-	    	LinkedList<contact> L =new LinkedList();
-			 Node current = head;
+	    	LinkedList<contact> L =new LinkedList<>();
+			 Node<T> current = head;
 			 while(current!=null) {
 				 if(((event) current.getData()).getEventTitle().equalsIgnoreCase(Eventtittle)) {
 					 L = ((event) current.getData()).getContactEvent();
@@ -197,6 +201,23 @@ public class LinkedList<T>  {
 
 
 	    }
+	 public event findTitle(String Eventtittle){/////////?????
+	    	
+	    	event t=null;
+			 Node current = head;
+			 while(current!=null) {
+				 if(((event) current.getData()).getEventTitle().equalsIgnoreCase(Eventtittle)) {
+					 t = ((event) current.getData());
+					 
+				 }			 
+				 current = current.next;
+			 }
+			
+				
+			 return t;
+		 }
+	
+	 
 	 
 	
 	

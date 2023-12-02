@@ -104,11 +104,20 @@ public class PhoneBookMain {
 					 System.out.println();    
 				 }
 				 else if(x==4) {
+					 while(true) {
 					 System.out.println("Enter type:");  
 				        System.out.println("1. event");  
 				        System.out.println("2. appointment");  
-				        System.out.println("\nEnter your choice: ");  
-				        int choice = input.nextInt();  
+				        System.out.println("\nEnter your choice: "); 
+				        
+				        int choice=0;
+				     try {    choice = input.nextInt();
+				     if(choice<1||choice>2) {
+				    	 System.out.println("wrong input try again");
+				    	 continue;}
+				    	 
+				     }catch(InputMismatchException e) {System.out.println("wrong input try again");
+				     input.nextLine();}
 				        
 					 if(choice==1) {
 						 
@@ -116,6 +125,7 @@ public class PhoneBookMain {
 						 input.nextLine();
 						 String eventTitle = input.nextLine();
 						 System.out.print("Enter contacts name separated by a comma:"); 
+						 
 						 String ContactName =input.nextLine();
 						 input.nextLine();
 						
@@ -130,8 +140,9 @@ public class PhoneBookMain {
 						 NewEvent.isEvent=true;
 						 p.scheduleEvent( NewEvent,ContactName);
 						 System.out.println();
+						 break;
 					 }
-					 else {
+					 else if(choice==2) {
 						
 						 System.out.print("Enter appointment title:");
 						 input.nextLine();
@@ -151,9 +162,10 @@ public class PhoneBookMain {
 						 NewEvent.isEvent=false;
 						 p.scheduleEvent( NewEvent,ContactName);
 						 System.out.println();
+						 break;
 					 }
 					    
-				 }
+				 }}
 				 else if(x==5) {
 					 while (true) {
 					 System.out.println("Enter search criteria:"); 

@@ -1,4 +1,4 @@
-import java.sql.Time;
+
 
 public class event implements Comparable<event> {
 
@@ -7,10 +7,9 @@ public class event implements Comparable<event> {
 	 private String date;
 	 private String Time;
 	 private String location;    
-	 private contactBST BST;
-	 private String start,end;    
+	   
 
-	 private Time st,en;
+	 
 	 public boolean isEvent=true;
 	 
 	 public LinkedList<contact> contactEvent;
@@ -33,9 +32,9 @@ public class event implements Comparable<event> {
 		 ContactName="";
 		 date="";
 		 location="";
-		 this.isEvent = true;  
+		 isEvent = true;  
 		 Time="";
-		 this.contactEvent = new LinkedList<contact> ();  
+		 contactEvent = new LinkedList<contact> ();  
 	 }
 	 
 	 
@@ -70,36 +69,7 @@ public class event implements Comparable<event> {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public contactBST getBST() {
-		return BST;
-	}
-	public void setBST(contactBST bST) {
-		BST = bST;
-	}
-	public String getStart() {
-		return start;
-	}
-	public void setStart(String start) {
-		this.start = start;
-	}
-	public String getEnd() {
-		return end;
-	}
-	public void setEnd(String end) {
-		this.end = end;
-	}
-	public Time getSt() {
-		return st;
-	}
-	public void setSt(Time st) {
-		this.st = st;
-	}
-	public Time getEn() {
-		return en;
-	}
-	public void setEn(Time en) {
-		this.en = en;
-	}
+	
 	public boolean isEvent() {
 		return isEvent;
 	}
@@ -114,8 +84,6 @@ public class event implements Comparable<event> {
 	}
 	
 	
-
-	 
 	 public  int compareTo(event e) {
 			return getEventTitle().compareTo(e.eventTitle);
 		}
@@ -124,17 +92,19 @@ public class event implements Comparable<event> {
 	 public void PrintEvent() {
 		 if(isEvent==true) {
 			 System.out.println("Event title: "+eventTitle); 
-		     System.out.println("Contact Name: "+ContactName); 
+		     System.out.println("Contacts Name: "+ContactName); 
 		     System.out.println("Date : "+date); 
+		     System.out.println("Time: "+Time );
 			 System.out.println("Location: "+location );
-			 System.out.println("Time: "+Time ); 
+			 
 		 }
 		 else {
 			 System.out.println("Appointment title: "+eventTitle); 
 		     System.out.println("Contact Name: "+ContactName); 
 		     System.out.println("Date : "+date); 
+		     System.out.println("Time: "+Time );
 			 System.out.println("Location: "+location );
-			 System.out.println("Time: "+Time ); 
+			 
 		 }
 		
 

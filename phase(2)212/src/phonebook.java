@@ -5,7 +5,7 @@ public class phonebook {
 	private contactBST contactTree;
 	
 	public phonebook() {
-		eventList = new LinkedList();
+		eventList = new LinkedList<>();
 		contactTree = new contactBST();
 	}
 	public void addContact(contact contact) {
@@ -57,11 +57,11 @@ public class phonebook {
 		}
 		if(flag==false) {
 			System.out.println();
-			System.out.println("can t' schedule becuase one or more  contacts not found");
+			System.out.println("Can t' schedule becuase one or more  contacts not found");
                  return;}
 		else {
 			contact currentC;
-			if(names.length==1 ) {  // appointment 
+			if(names.length==1 ) {  // appointment or event with one contact
 				 currentC=contactTree.CheckNameObj(names[0]);
 			boolean conflict= isConflict(currentC, e);  
 			if(conflict)
@@ -71,13 +71,17 @@ public class phonebook {
 				currentC.getEventList().addE(e);
 				e.contactEvent.addC(currentC);
 				System.out.println();
-				System.out.println(" appointment scheduled successfuly");
+				if(e.isEvent==false)
+					System.out.println("Appointment scheduled successfuly");
+					else
+					System.out.println("Event scheduled successfuly");
+				
 			}
 			}
 	
 			else  {
 				boolean flags=false; 
-				for(int i= 0;i<names.length;i++) { //cheking conflect
+				for(int i= 0;i<names.length;i++) { //checking conflict
 				currentC=contactTree.CheckNameObj(names[i]);
 				if(isConflict(currentC, e))
 				{  flags=false;
@@ -85,7 +89,7 @@ public class phonebook {
 				else flags=true;}
 				if(flags) {
 					System.out.println();
-					System.out.println(" event will be sechedule  successfuly");
+					System.out.println("Event secheduled successfuly");
 				}
 				for(int i= 0;i<names.length;i++) { // scheduling
 					currentC=contactTree.CheckNameObj(names[i]);
@@ -109,14 +113,14 @@ public class phonebook {
 	
 	public void removeContact(String contactName ) {
 		if(contactTree.empty()) {
-			System.out.println("Tree is empty."); 
+			System.out.println("Contact tree is empty."); 
 			return;
 		}
 		else {
 		LinkedList<event> list = new LinkedList<>();
 		if(!contactTree.findkey(contactName)) {
 			System.out.println();
-			System.out.println("Contact does not exist."); 
+			System.out.println("Contact not found in the tree."); 
 			return;
 		}
 		
@@ -124,7 +128,7 @@ public class phonebook {
 		removeEventwithContact(contactName,list);
 		if(contactTree.removeKey(contactName)) {
 			System.out.println();
-			System.out.println("Contact removed succefully. ");  
+			System.out.println("Contact removed succefully.");  
 		         
 		}
 		else {
@@ -169,14 +173,14 @@ public class phonebook {
 				System.out.println();
 				if(e.isEvent==true) {
 					System.out.println("Event is deleted. "); 
-					return;
+					
 				}
 				else {
 					System.out.println("Appointment is deleted. "); 
-					return;
+					
 				}
+				return;
 				
-				//System.out.println("Event/Appointment: "+eventTitle+" is deleted."); 
 				
 			}
 			eventList.findNext();
@@ -211,7 +215,7 @@ public class phonebook {
 	public void searchContacts(int criteria) {
 		 if(contactTree.empty()) {
 			 System.out.println();
-			 System.out.println("the Contact Tree is empty ");
+			 System.out.println("Contact tree is empty ");
 		 }
 		 else
 			 contactTree.searchContacts(criteria);
@@ -220,7 +224,7 @@ public class phonebook {
 	 public void searchEvent(int criteria) {
 		 if(eventList.empty()) {
 			 System.out.println();
-			 System.out.println("the Event List is empty ");
+			 System.out.println("Event list is empty ");
 		 }
 		 else {
 			 eventList.searchEvent(criteria);
@@ -237,7 +241,7 @@ public class phonebook {
 	 
 	 public void printAllEventsAlphabetically() {
 		 if(eventList.empty()) {
-			 System.out.println("event is empty");
+			 System.out.println("Event list is empty");
 			 System.out.println();
 		 }
 		 
@@ -255,104 +259,7 @@ public class phonebook {
 	 }
 	 
 	 
-	 private  boolean Conflict(contact c,event e) {
-		 if(c.eventList.empty()) 
-			 return false;
-				c.eventList.findFirst();
-				while(!	c.eventList.last()) {
-					if(!e.getDate().equalsIgnoreCase(c.eventList.retrieve().getDate()))
-							return false;
-					if(e.getDate().equalsIgnoreCase(c.eventList.retrieve().getDate())) {
-						//if()
-							//return true;
-					}
-					
-					c.eventList.findNext();
-				}
-				if(!e.getDate().equalsIgnoreCase(c.eventList.retrieve().getDate()))
-					return false;
-				//if()
-				//	return true;
-				else
-					return false;
-					
-             
-	 }
-
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 /*
-	  * public void scheduleEvent(event e, String contactName) {
-		boolean flag =false; ;
-		LinkedList<String> l=new LinkedList<>();
-		String [] names= contactName.split(",");
-		for(int i= 0;i<names.length;i++) {
-			l.addString(names[i]);
-		}
-		for(int i= 0;i<names.length;i++) {
-			if(!contactTree.CheckName(names[i]))
-				flag=false;
-			
-			else flag =true;
-		}
-		if(flag==false) {
-			System.out.println("can t' schedule becuase contact not found");
-                 return;}
-		else {
-		
-		contact currentContact=contactTree.findName(contactName);
-		if(currentContact==null) {
-			System.out.println("can t' schedule becuase contact not found");
-			return;}
-		if(!e.isEvent) {  // appointment
-			if(!e.contactEvent.empty()) 
-		    System.out.println("can t' schedule becuase appointment is scheduled already ");
-			return;
-		}
-			boolean conflict=isConflict(currentContact, e);
-			if(currentContact!=null&& conflict) {
-			System.out.println("no conflect ");
-			currentContact.getEventList().addE(e);
-			e.contactEvent.addC(currentContact);
-			eventList.addE(e);
-			
-
-			}
-			else {
-				if(currentContact==null)
-					System.out.println("can t' schedule becuase contact not found");
-				if(conflict)
-					System.out.println("can t' schedule becuase there is conflict");
-
-
-			}}
-		
-	}
-	  * 
-	  * 
-	  * 
-	  * */
-	 
+	
+	
 
 }

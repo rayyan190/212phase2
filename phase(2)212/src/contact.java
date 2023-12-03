@@ -21,14 +21,22 @@ public class contact implements Comparable<contact>{
 	}
 	public contact(String name, String phoneNumber, String eMail, String birthday, String notes, String addres) {
 		this.name = name;
-		PhoneNumber = phoneNumber;
+		this.PhoneNumber = phoneNumber;
 		this.eMail = eMail;
-		Birthday = birthday;
+		this.Birthday = birthday;
 		this.notes = notes;
 		this.addres = addres;
-		  eventList =new LinkedList<>();
+		eventList =new LinkedList<>();
 
-		
+	}
+	public contact(){
+		name = "";
+		PhoneNumber = "";
+		eMail = "";
+		Birthday = "";
+		notes = "";
+		addres = "";
+		eventList =new LinkedList<>();
 	}
 	
 	public contact(String name) {

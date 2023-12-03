@@ -1,4 +1,26 @@
+/*
 
+CLASS: phonebook.java
+
+CSC212 Data structures - Project phase 2
+
+Fall 2023
+
+EDIT DATE:
+
+3-12-2023
+
+TEAM:
+
+team name: my technology.
+
+AUTHORS:
+Rayan Alghamdi. id:443102225
+Mohammed Aleidi.id:443102416
+
+
+
+*/
 
 public class phonebook {
 	private LinkedList<event> eventList;
@@ -8,7 +30,7 @@ public class phonebook {
 		eventList = new LinkedList<>();
 		contactTree = new contactBST();
 	}
-	public void addContact(contact contact) {
+	public void addContact(contact contact) { //bigO(n)
 		if(!contactTree.isContactUnique(contact)) {
 			System.out.println();       
 			 System.out.println("Contact with the same name or phone number already exists.");
@@ -22,7 +44,7 @@ public class phonebook {
 		}
 	}
 	
-	private boolean isConflict(contact c,event e) {
+	private boolean isConflict(contact c,event e) { //bigO(n)
 		if(c.eventList.empty()) {
 			
                     return false;}
@@ -45,59 +67,59 @@ public class phonebook {
 		else return false;
 
 	}}
-	public void scheduleEvent(event e, String contactName) {
-		boolean flag =false; ;
-		String [] names= contactName.split(",");
+	public void scheduleEvent(event e, String contactName) { //big(n^2)
+		boolean flag =false; ;//1
+		String [] names= contactName.split(",");//n
 		
-		for(int i= 0;i<names.length;i++) {
-			if(contactTree.CheckName(names[i]))
-				flag=true;
+		for(int i= 0;i<names.length;i++) {//n
+			if(contactTree.CheckName(names[i]))//n^2-1
+				flag=true;//n^2-2
 			
 			else flag =false;
 		}
 		if(flag==false) {
-			System.out.println();
-			System.out.println("Can t' schedule becuase one or more  contacts not found");
+			System.out.println();//1
+			System.out.println("Can t' schedule becuase one or more  contacts not found");//1
                  return;}
 		else {
-			contact currentC;
-			if(names.length==1 ) {  // appointment or event with one contact
-				 currentC=contactTree.CheckNameObj(names[0]);
-			boolean conflict= isConflict(currentC, e);  
-			if(conflict)
+			contact currentC;//1
+			if(names.length==1 ) {  // appointment or event with one contact//1
+				 currentC=contactTree.CheckNameObj(names[0]);//n
+			boolean conflict= isConflict(currentC, e);  //n
+			if(conflict)//1
 			return;
 			else {
-				eventList.addE(e);
-				currentC.getEventList().addE(e);
-				e.contactEvent.addC(currentC);
-				System.out.println();
-				if(e.isEvent==false)
-					System.out.println("Appointment scheduled successfuly");
+				eventList.addE(e);//n
+				currentC.getEventList().addE(e);//n
+				e.contactEvent.addC(currentC);//n
+				System.out.println();//1
+				if(e.isEvent==false)//1
+					System.out.println("Appointment scheduled successfuly");//1
 					else
-					System.out.println("Event scheduled successfuly");
+					System.out.println("Event scheduled successfuly");//1
 				
 			}
 			}
 	
 			else  {
-				boolean flags=false; 
-				for(int i= 0;i<names.length;i++) { //checking conflict
-				currentC=contactTree.CheckNameObj(names[i]);
-				if(isConflict(currentC, e))
+				boolean flags=false; //1
+				for(int i= 0;i<names.length;i++) { //checking conflict  n
+				currentC=contactTree.CheckNameObj(names[i]);//n^2-1
+				if(isConflict(currentC, e))//n^2-2
 				{  flags=false;
 					return;}
 				else flags=true;}
 				if(flags) {
-					System.out.println();
-					System.out.println("Event secheduled successfuly");
+					System.out.println();//1
+					System.out.println("Event secheduled successfuly");//1
 				}
-				for(int i= 0;i<names.length;i++) { // scheduling
-					currentC=contactTree.CheckNameObj(names[i]);
-					currentC.getEventList().addE(e);
-					e.contactEvent.addC(currentC);
+				for(int i= 0;i<names.length;i++) { // scheduling   //n
+					currentC=contactTree.CheckNameObj(names[i]);//n^2-1
+					currentC.getEventList().addE(e);//n^2-1
+					e.contactEvent.addC(currentC);//n^2-1
 					
 					}
-				    eventList.addE(e);
+				    eventList.addE(e);//n
 
 				}
 				
@@ -111,7 +133,7 @@ public class phonebook {
 		
 	
 	
-	public void removeContact(String contactName ) {
+	public void removeContact(String contactName ) { ////bigO(n^2)
 		if(contactTree.empty()) {
 			System.out.println("Contact tree is empty."); 
 			return;
@@ -157,6 +179,8 @@ public class phonebook {
 		if(!contactsEvent.empty()&&contactsEvent.retrieve().getName().equalsIgnoreCase(name))
 			contactsEvent.remove();
 		
+		if(!contactsEvent.empty())
+			return;
 		
 		if(eventList.empty()) {
 			return;
@@ -211,7 +235,7 @@ public class phonebook {
 	}
 	
 	 
-	public void searchContacts(int criteria) {
+	public void searchContacts(int criteria) {//bigO(n)
 		 if(contactTree.empty()) {
 			 System.out.println();
 			 System.out.println("Contact tree is empty ");
@@ -220,7 +244,7 @@ public class phonebook {
 			 contactTree.searchContacts(criteria);
 	 }
 	 
-	 public void searchEvent(int criteria) {
+	 public void searchEvent(int criteria) {//bigO(n)
 		 if(eventList.empty()) {
 			 System.out.println();
 			 System.out.println("Event list is empty ");
@@ -232,13 +256,13 @@ public class phonebook {
 	 
 	 
 	 
-	 public void printContactsByFirstName(String firstName) {
+	 public void printContactsByFirstName(String firstName) {//bigO(n)
 		 contactTree.printByFirstName(firstName);
 		 
 	 }
     
 	 
-	 public void printAllEventsAlphabetically() {
+	 public void printAllEventsAlphabetically() {//bigO(n)
 		 if(eventList.empty()) {
 			 System.out.println("Event list is empty");
 			 System.out.println();

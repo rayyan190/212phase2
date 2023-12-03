@@ -1,4 +1,27 @@
 import java.util.Scanner;
+/*
+
+CLASS: contactBST.java
+
+CSC212 Data structures - Project phase 2
+
+Fall 2023
+
+EDIT DATE:
+
+3-12-2023
+
+TEAM:
+
+team name: my technology.
+
+AUTHORS:
+Rayan Alghamdi. id:443102225
+Mohammed Aleidi.id:443102416
+
+
+
+*/
 
 public class contactBST {
 	BSTNode root,current;
@@ -64,7 +87,7 @@ public class contactBST {
 		}
 	}
 	
-	public boolean remove_key (String tkey){ // bigO(n) in the worst case
+	public boolean remove_key (String tkey){ 
 		Boolean removed = new Boolean(false);
 		BSTNode p;
 		p = remove_aux(tkey, root, removed);
@@ -252,25 +275,23 @@ public class contactBST {
 	public void searchName(String name) { // bigO(n) in the worst case
 		if(empty())
 			return ;
-		if(!searchName(root, name)) {
-			System.out.println();  
-			System.out.println("Contact not found");
-		}
+		searchName(root, name) ;
+		
 	}
-	private boolean searchName(BSTNode p,String name) {
+	private void searchName(BSTNode p,String name) {
 		
 		if(p!=null) {
-			if(findkey(name)) {
+			if(p.data.getName().equalsIgnoreCase(name)) {
 				System.out.println();
 				p.data.PrintContact();
-				return true;
+				System.out.println();
+				return;
 			}
 			
 				
 			searchName(p.left,name);
 			searchName(p.right,name);
 		}
-		return false;
 		
 	}
 	
@@ -280,46 +301,44 @@ public class contactBST {
 	public void searchPhoneNumber(String phone) { // bigO(n) in the worst case
 		if(empty())
 			return ;
-		if(!searchPhoneNumber(root, phone)) {
-			System.out.println();  
-			System.out.println("Contact not found");
-		}
+		searchPhoneNumber(root, phone);
+		
 	}
-	private boolean searchPhoneNumber(BSTNode p,String phone) {
+	private void searchPhoneNumber(BSTNode p,String phone) {
 		if(p!=null) {
 			if(p.data.getPhoneNumber().equalsIgnoreCase(phone)) {
 				System.out.println();
 				p.data.PrintContact();
-				return true;
+				System.out.println();
+				return ;
 			}
 			searchPhoneNumber(p.left,phone);
 			searchPhoneNumber(p.right,phone);
 		}
-		return false;
+		
 		
 	}
 	
 	public void searchEmail(String email) { // bigO(n) in the worst case
 		if(empty())
 			return ;
-		if(!searchEmail(root, email)) {
-			System.out.println();  
-			System.out.println("Contact not found");
-		}
+		searchEmail(root, email);
+		
 			 
 	}
-	private boolean searchEmail(BSTNode p,String email) {
-		 boolean flag = false;
+	private void searchEmail(BSTNode p,String email) {
+		
 		if(p!=null) {
 			if(p.data.geteMail().equalsIgnoreCase(email)) {
 				System.out.println();
 				p.data.PrintContact();
-				flag=true;
+				System.out.println();
+				
 			}
 			searchEmail(p.left,email);
 			searchEmail(p.right,email);
 		}
-		return flag;
+		
 	}
 	
 	public void searchBirthday(String birthday) { // bigO(n) in the worst case
@@ -328,53 +347,49 @@ public class contactBST {
 	       
 	        return;
 	    }
-	    if (!searchBirthday(root, birthday)) {
-	    	System.out.println();  
-	        System.out.println("Contact not found");
-	    }
+	   searchBirthday(root, birthday);
+	    
 	}
 
-	private boolean searchBirthday(BSTNode p, String birthday) {
-	    boolean flag = false;
+	private void searchBirthday(BSTNode p, String birthday) {
 	    if (p != null) {
 	        if (p.data.getBirthday().equalsIgnoreCase(birthday)) {
 	            System.out.println();
 	            p.data.PrintContact();
-	            flag = true;
+	            System.out.println();
+	            
 	        }
 	        searchBirthday(p.left, birthday);
 	        searchBirthday(p.right, birthday);
 	    }
-	    return flag;
+	  
 	}
 	
 	public void searchAddres(String addres) {// bigO(n) in the worst case
 		if(empty())
 			return ;
-		if(!searchAddres(root, addres)) {
-			System.out.println();  
-			 System.out.println("Contact not found");
-		}
+		searchAddres(root, addres);
+		
 	}
-	private boolean searchAddres(BSTNode p,String addres) {
-		 boolean flag = false;
+	private void searchAddres(BSTNode p,String addres) {
 		if(p!=null) {
 			if(p.data.getAddres().equalsIgnoreCase(addres)) { 
 				System.out.println();
 				p.data.PrintContact();
-				flag=true;
+				System.out.println();
+			
 			}
 			searchAddres(p.left,addres);
 			searchAddres(p.right,addres);
 		}
-		return flag;
+		
 	}
 	
 	
 	
 	
 	 
-	  public void searchContacts(int criteria){
+	  public void searchContacts(int criteria){ // bigO(n) in the worst case
     	Scanner input = new Scanner(System.in);       // receive the way of searching then implement it
     	if(criteria==1) {
     		 System.out.println();
@@ -414,10 +429,10 @@ public class contactBST {
 			  System.out.println("Contact tree is empty");
 			  return;
 			  } 
-		  SearchSameFirstName(root, firstName);
+		  SearchFirstName(root, firstName);
 	  }
 	
-	  private void SearchSameFirstName (BSTNode  p, String firstName)
+	  private void SearchFirstName (BSTNode  p, String firstName)
 	    {
 	        if (p == null)
 	            return ;
@@ -425,8 +440,8 @@ public class contactBST {
 	        else  if (p.data.compareFirstName(firstName) == 0)
 	           p.data.PrintContact();
 
-	        SearchSameFirstName(p.left , firstName);
-	        SearchSameFirstName(p.right, firstName);
+	        SearchFirstName(p.left , firstName);
+	        SearchFirstName(p.right, firstName);
 	    }
 	  
 	  

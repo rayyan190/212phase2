@@ -1,4 +1,26 @@
+/*
 
+CLASS: contact.java
+
+CSC212 Data structures - Project phase 2
+
+Fall 2023
+
+EDIT DATE:
+
+3-12-2023
+
+TEAM:
+
+team name: my technology.
+
+AUTHORS:
+Rayan Alghamdi. id:443102225
+Mohammed Aleidi.id:443102416
+
+
+
+*/
 
 public class contact implements Comparable<contact>{
 	private String name;

@@ -30,14 +30,14 @@ public class phonebook {
 		
 		c.eventList.findFirst();
 		while(!c.eventList.last()) {
-			if(e.getDate().equalsIgnoreCase(c.eventList.retrieve().getDate())&& e.getTime().equalsIgnoreCase(c.eventList.retrieve().getTime())) {
+			if(e.getDate().equalsIgnoreCase(c.eventList.retrieve().getDate())&& e.getTime().equalsIgnoreCase(c.eventList.retrieve().getTime())&&e.getContactName().equalsIgnoreCase(c.eventList.retrieve().getContactName())) {
 				System.out.println();
 				System.out.println("there is conflict ");
 				return true;
 			}
 			c.eventList.findNext();
 		}
-		if(e.getDate().equalsIgnoreCase(c.eventList.retrieve().getDate())&& e.getTime().equalsIgnoreCase(c.eventList.retrieve().getTime())) {
+		if(e.getDate().equalsIgnoreCase(c.eventList.retrieve().getDate())&& e.getTime().equalsIgnoreCase(c.eventList.retrieve().getTime())&&e.getContactName().equalsIgnoreCase(c.eventList.retrieve().getContactName())) {
 			System.out.println();
 			System.out.println("there is conflict ");
 			return true;}
@@ -156,8 +156,7 @@ public class phonebook {
 		}
 		if(!contactsEvent.empty()&&contactsEvent.retrieve().getName().equalsIgnoreCase(name))
 			contactsEvent.remove();
-		if(!contactsEvent.empty())
-			return;
+		
 		
 		if(eventList.empty()) {
 			return;
@@ -203,7 +202,7 @@ public class phonebook {
 		
 		else {
 			System.out.println();
-			System.out.println("event dose not exist.");  
+			System.out.println("event does not exist.");  
 		}
 		
 	
